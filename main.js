@@ -18,7 +18,6 @@ function addItem() {
 
      document.querySelector("#item").value = ""
 
-     console.log(items)
      showItemsList()
 }
 
@@ -32,7 +31,7 @@ function showItemsList() {
     items.map((item, index) => {
      sectionList.innerHTML +=  `
         <div class="item">
-        <div>
+         <div>
             <input type="checkbox" name="list" id="item-${index}">
             <input type="checkbox" name="list" id="item-${index}" onclick="checkItem('${item.name}')"${item.checked === true ? "checked" : ""}>
              <div class="custom-checkbox" onclick="checkItem('${item.name}')">
@@ -40,16 +39,17 @@ function showItemsList() {
             </div>
             <label for="item-${index}">${item.name}</label>
             <label for="item-${index}"onclick="checkItem('${item.name}')>${item.name}</label>
-        </div>
-        <button>
+         </div>
+         <button>
           <button onclick="removeItem('${item.name}')">
             <img src="./assets/trash-icon.svg" alt="trash icon">
-        </button> `
+         </button> `
+      
     })
 }
 
 function checkItem(itemName) {
-    const item = item.find((item) => item.name === itemName)
+      const item = items.find((item) => item.name === itemName)
     item.checked = !item.checked
      showItemsList()
 }
@@ -70,3 +70,6 @@ function removeItem(itemName) {
 
     showItemsList()
 }  
+function addHideWarningClass() {
+    document.querySelector(".warning").classList.add("hide-warning")
+}
