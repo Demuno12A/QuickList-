@@ -139,10 +139,7 @@ main {
             display: none;
         }
 
-        div:has(input:checked){
-            .custom-checkbox{
-                 label {
-            cursor: pointer;
+
         }
         div:has(input:checked) {
             .custom-checkbox {
@@ -169,8 +166,8 @@ main {
             }
          }
        }
-    }
- }
+
+ 
 
 .warning {
     background: var(--color-danger);
@@ -231,4 +228,4 @@ main {
         }
     }
    }
-} 
+
