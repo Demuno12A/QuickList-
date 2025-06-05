@@ -1,19 +1,19 @@
-const items = []
+let items = []
 
 function addItem() {
     const itemName = document.querySelector("#item").value
-     if (itemName === "") {
+
+    if (itemName === "") {
         alert("Digite um item válido!")
         return
     }
-
 
     const item = {
         name: itemName,
         checked: false
     }
 
-    
+
     items.push(item)
 
      document.querySelector("#item").value = ""
@@ -29,36 +29,33 @@ function showItemsList() {
       items.sort((itemA, itemB) => Number(itemA.checked) - Number(itemB.checked))
 
     items.map((item, index) => {
-     sectionList.innerHTML +=  `
+        sectionList.innerHTML +=  `
         <div class="item">
-         <div>
-            <input type="checkbox" name="list" id="item-${index}">
+        <div>
             <input type="checkbox" name="list" id="item-${index}" onclick="checkItem('${item.name}')"${item.checked === true ? "checked" : ""}>
-             <div class="custom-checkbox" onclick="checkItem('${item.name}')">
+            <div class="custom-checkbox" onclick="checkItem('${item.name}')">
                 <img src="./assets/checked.svg" alt="checked">
             </div>
             <label for="item-${index}">${item.name}</label>
-            <label for="item-${index}"onclick="checkItem('${item.name}')>${item.name}</label>
-         </div>
-         <button>
-          <button onclick="removeItem('${item.name}')">
+        </div>
+        <button onclick="removeItem('${item.name}')">
             <img src="./assets/trash-icon.svg" alt="trash icon">
-         </button> `
-      
+        </button>
+    `
     })
-    
+
     localStorage.setItem("items", JSON.stringify(items))
 }
 
 function checkItem(itemName) {
-      const item = items.find((item) => item.name === itemName)
+    const item = items.find((item) => item.name === itemName)
     item.checked = !item.checked
-     showItemsList()
+    showItemsList()
 }
 
 function removeItem(itemName) {
     const itemIndex = items.findIndex((item) => item.name === itemName)
-     const divWarning = document.querySelector(".warning")
+    const divWarning = document.querySelector(".warning")
 
     divWarning.classList.remove("hide-warning")
 
@@ -71,11 +68,11 @@ function removeItem(itemName) {
     }
 
     showItemsList()
-}  
+}
+
 function addHideWarningClass() {
     document.querySelector(".warning").classList.add("hide-warning")
-
-}
+    }
 
 function verifyLocalStorageItems(){
     const localStorageItems = localStorage.getItem("items")
@@ -85,5 +82,3 @@ function verifyLocalStorageItems(){
         showItemsList()
     }
 }
-
-verifyLocalStorageItems()
